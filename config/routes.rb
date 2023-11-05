@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "react#index"
+
+  post "api/select_topics" => "api#select_topics"
 end
