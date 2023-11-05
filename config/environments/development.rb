@@ -74,4 +74,19 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # Code to initialize the broadcast generator loop
+  config.after_initialize do
+    if Rails.env.development?
+      ActionCable.server.config.logger = Logger.new(STDOUT)
+      ActionCable.server.config.logger.level = Logger::WARN
+      
+      Thread.new do
+        loop do
+          TempFeedBroadcaster.broadcast_message
+          sleep 10.seconds
+        end
+      end
+    end
+  end  
 end
