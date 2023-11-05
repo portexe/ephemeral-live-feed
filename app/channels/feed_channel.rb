@@ -3,6 +3,9 @@ class FeedChannel < ApplicationCable::Channel
         puts "Connected"
         stream_from :feed_channel
 
-        ActionCable.server.broadcast(:feed_channel, { body: "Some data for you?" })
+        sleep(2.seconds)
+
+        ActionCable.server.broadcast(:feed_channel, { body: { text: 'Message number 1', id: 'r843', topic: 'food' } })
+        ActionCable.server.broadcast(:feed_channel, { body: { text: 'Message number 2', id: 'g89re', topic: 'music' } })
     end
 end
