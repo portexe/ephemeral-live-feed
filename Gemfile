@@ -61,3 +61,5 @@ end
 gem "vite_rails", "~> 3.0"
 
 gem "foreman", "~> 0.87.2"
+
+gem "faker", "~> 3.2"
