@@ -30,7 +30,7 @@ export function TopicsForm({ onSubmitComplete }) {
         setError(apiResponse.error || "");
 
         if (!apiResponse.error) {
-          onSubmitComplete();
+          onSubmitComplete(apiResponse.session_id);
         }
       } catch (error) {
         setError("Server error. Please try again soon.");

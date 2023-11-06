@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import { TopicsForm, Feed } from "../";
 
 export function App() {
-  const [topicsFormSubmitted, setTopicsFormSubmitted] = useState(false);
+  const [clientId, setClientId] = useState("");
 
   return (
     <main>
-      {topicsFormSubmitted ? (
-        <Feed />
+      {clientId ? (
+        <Feed clientId={clientId} />
       ) : (
-        <TopicsForm onSubmitComplete={() => setTopicsFormSubmitted(true)} />
+        <TopicsForm onSubmitComplete={(clientId) => setClientId(clientId)} />
       )}
     </main>
   );
