@@ -43,7 +43,7 @@ module TempFeedBroadcaster
         }
       }
 
-      ActionCable.server.broadcast(:feed_channel, message_data)
+      ActionCable.server.broadcast("feed_channel_#{random_topic}", message_data)
     end
   end
   

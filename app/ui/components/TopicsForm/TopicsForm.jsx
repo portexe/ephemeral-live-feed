@@ -30,7 +30,7 @@ export function TopicsForm({ onSubmitComplete }) {
         setError(apiResponse.error || "");
 
         if (!apiResponse.error) {
-          onSubmitComplete();
+          onSubmitComplete(apiResponse.session_id);
         }
       } catch (error) {
         setError("Server error. Please try again soon.");
@@ -51,13 +51,8 @@ export function TopicsForm({ onSubmitComplete }) {
         }}
       >
         <label>
-          <input type="checkbox" name="general" />
-          General
-        </label>
-
-        <label>
-          <input type="checkbox" name="food" />
-          Food
+          <input type="checkbox" name="games" />
+          Games
         </label>
 
         <label>
@@ -67,12 +62,12 @@ export function TopicsForm({ onSubmitComplete }) {
 
         <label>
           <input type="checkbox" name="movies" />
-          Movies & TV
+          Movies
         </label>
 
         <label>
-          <input type="checkbox" name="tech" />
-          Tech
+          <input type="checkbox" name="Books" />
+          Books
         </label>
 
         <button type="submit">Submit</button>

@@ -1,6 +1,17 @@
+require 'json'
+
 class FeedChannel < ApplicationCable::Channel
     def subscribed
-        puts "Connected"
-        stream_from :feed_channel
+        topics_list.each do |topic|
+            stream_from "feed_channel_#{topic}"
+        end
+    end
+
+    private
+
+    def topics_list
+        val = RedisService.get(client_id)
+        return [] unless val
+        JSON.parse(val)
     end
 end

@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 
 import { createConsumer } from "@rails/actioncable";
 
-const consumer = createConsumer("ws://localhost:5100/cable");
-
-export function useFeedSubscription() {
+export function useFeedSubscription(clientId) {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+    if (!clientId) return;
+
+    const consumer = createConsumer(
+      `ws://localhost:5100/cable?client=${clientId}`
+    );
+
     consumer.subscriptions.create(
       { channel: "FeedChannel" },
       {
@@ -21,7 +25,7 @@ export function useFeedSubscription() {
         },
       }
     );
-  }, []);
+  }, [clientId]);
 
   return messages;
 }

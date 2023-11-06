@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 
-import { useFeedSubscription } from "../../hooks";
 import { TopicsForm, Feed } from "../";
 
 export function App() {
-  const [topicsFormSubmitted, setTopicsFormSubmitted] = useState(false);
-
-  const messages = useFeedSubscription();
+  const [clientId, setClientId] = useState("");
 
   return (
     <main>
-      {topicsFormSubmitted ? (
-        <Feed messages={messages} />
+      {clientId ? (
+        <Feed clientId={clientId} />
       ) : (
-        <TopicsForm onSubmitComplete={() => setTopicsFormSubmitted(true)} />
+        <TopicsForm onSubmitComplete={(clientId) => setClientId(clientId)} />
       )}
     </main>
   );

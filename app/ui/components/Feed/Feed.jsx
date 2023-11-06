@@ -1,5 +1,7 @@
-export function Feed({ messages }) {
-  console.log(messages);
+import { useFeedSubscription } from "../../hooks";
+
+export function Feed({ clientId }) {
+  const messages = useFeedSubscription(clientId);
 
   return (
     <div>
