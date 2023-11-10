@@ -2,6 +2,7 @@ require 'securerandom'
 
 class ApiController < ApplicationController
     skip_before_action :verify_authenticity_token
+    before_action :authenticate_user!    
 
     def select_topics
         topics = params[:topics]

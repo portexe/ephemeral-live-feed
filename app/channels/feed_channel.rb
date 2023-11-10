@@ -1,5 +1,3 @@
-require 'json'
-
 class FeedChannel < ApplicationCable::Channel
     def subscribed
         topics_list.each do |topic|
@@ -10,8 +8,9 @@ class FeedChannel < ApplicationCable::Channel
     private
 
     def topics_list
-        val = RedisService.get(client_id)
-        return [] unless val
-        JSON.parse(val)
+        [:movies, :music, :books, :games]
+        # val = RedisService.get(client_id)
+        # return [] unless val
+        # JSON.parse(val)
     end
 end
