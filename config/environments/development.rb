@@ -82,13 +82,6 @@ Rails.application.configure do
     if Rails.env.development?
       ActionCable.server.config.logger = Logger.new(STDOUT)
       ActionCable.server.config.logger.level = Logger::WARN
-      
-      Thread.new do
-        loop do
-          TempFeedBroadcaster.broadcast_message
-          sleep 10.seconds
-        end
-      end
     end
   end  
 end

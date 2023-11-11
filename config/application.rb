@@ -23,5 +23,17 @@ module EphemeralLiveFeed
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # This is entirely for experimentation.
+    # Normally I would not do it this way,
+    # especially in a production environment.
+    config.after_initialize do
+      Thread.new do
+        loop do
+          TempFeedBroadcaster.broadcast_message
+          sleep 10.seconds
+        end
+      end
+    end
   end
 end
