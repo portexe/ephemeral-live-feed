@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   root "react#index"
 
   post "api/select_topics" => "api#select_topics"
+  get "api/get_user_topics" => "api#get_user_topics"
 end

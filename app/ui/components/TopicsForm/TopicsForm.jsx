@@ -17,19 +17,16 @@ export function TopicsForm({ onSubmitComplete }) {
       try {
         const apiResponse = await authenticatedFetch({
           method: "POST",
-          url: "http://localhost:5100/api/select_topics",
+          url: "/api/select_topics",
           body: JSON.stringify({
             topics: namesOnly,
           }),
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
+          headers: {},
         });
 
         setError("");
 
-        onSubmitComplete(apiResponse.session_id);
+        onSubmitComplete(apiResponse.topics);
       } catch (error) {
         console.error(error);
         setError("Server error");
@@ -65,7 +62,7 @@ export function TopicsForm({ onSubmitComplete }) {
         </label>
 
         <label>
-          <input type="checkbox" name="Books" />
+          <input type="checkbox" name="books" />
           Books
         </label>
 
