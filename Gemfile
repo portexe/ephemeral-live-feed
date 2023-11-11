@@ -65,3 +65,7 @@ gem "foreman", "~> 0.87.2"
 gem "faker", "~> 3.2"
 
 gem "redis", "~> 5.0"
+
+gem "devise"
+
+gem "dotenv-rails", "~> 2.8"

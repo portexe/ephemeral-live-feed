@@ -2,7 +2,7 @@ require 'faker'
 
 module TempFeedBroadcaster
     def self.broadcast_message
-      topics = [:movies, :music, :books, :games]
+      @topics = [:music, :games, :movies, :books]
 
       username, email = Faker::Internet.user.values_at(:username, :email)
 
@@ -33,7 +33,7 @@ module TempFeedBroadcaster
         },
       }
 
-      random_topic = topics.sample
+      random_topic = @topics.sample
 
       message_data = {
         body: {

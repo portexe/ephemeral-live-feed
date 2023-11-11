@@ -1,20 +1,18 @@
-module ApplicationCable  
+module ApplicationCable
   class Connection < ActionCable::Connection::Base
-    identified_by :client_id
+    identified_by :current_user
 
     def connect
-      self.client_id = request.params[:client]
-      reject_unauthorized_connection unless client_id_present?
-    end
-
-    def disconnect
-      RedisService.remove(client_id)
+      self.current_user = find_user
+      reject_unauthorized_connection unless current_user
     end
 
     private
 
-    def client_id_present?
-      client_id.present?
+    def find_user
+      verified_user = User.find_by(id: cookies.encrypted['_ephemeral_live_feed_session']['warden.user.user.key'][0][0])
+
+      verified_user || nil
     end
   end
 end

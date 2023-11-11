@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import styles from "./styles.module.css";
+import { authenticatedFetch } from "../../utilities/fetch";
 
 export function TopicsForm({ onSubmitComplete }) {
   const [error, setError] = useState("");
@@ -14,26 +15,21 @@ export function TopicsForm({ onSubmitComplete }) {
 
     if (namesOnly.length) {
       try {
-        const apiResponse = await fetch(
-          "http://localhost:5100/api/select_topics",
-          {
-            method: "POST",
-            body: JSON.stringify({
-              topics: namesOnly,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        ).then((res) => res.json());
+        const apiResponse = await authenticatedFetch({
+          method: "POST",
+          url: "/api/select_topics",
+          body: JSON.stringify({
+            topics: namesOnly,
+          }),
+          headers: {},
+        });
 
-        setError(apiResponse.error || "");
+        setError("");
 
-        if (!apiResponse.error) {
-          onSubmitComplete(apiResponse.session_id);
-        }
+        onSubmitComplete(apiResponse.topics);
       } catch (error) {
-        setError("Server error. Please try again soon.");
+        console.error(error);
+        setError("Server error");
       }
     } else {
       setError("At least 1 must be selected");
@@ -66,7 +62,7 @@ export function TopicsForm({ onSubmitComplete }) {
         </label>
 
         <label>
-          <input type="checkbox" name="Books" />
+          <input type="checkbox" name="books" />
           Books
         </label>
 

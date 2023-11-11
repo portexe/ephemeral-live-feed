@@ -41,6 +41,8 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -80,13 +82,6 @@ Rails.application.configure do
     if Rails.env.development?
       ActionCable.server.config.logger = Logger.new(STDOUT)
       ActionCable.server.config.logger.level = Logger::WARN
-      
-      Thread.new do
-        loop do
-          TempFeedBroadcaster.broadcast_message
-          sleep 10.seconds
-        end
-      end
     end
   end  
 end
