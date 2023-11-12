@@ -15,7 +15,7 @@ export function App() {
       url: "/api/get_user_topics",
     })
       .then(({ topics }) => {
-        setTopics(topics);
+        setTopics(topics.map((each) => each.name));
         setError("");
         setLoaded(true);
       })
@@ -40,11 +40,12 @@ export function App() {
     <main>
       <button onClick={logOut}>Log out</button>
 
-      {topics.length ? (
-        <Feed />
-      ) : (
-        <TopicsForm onSubmitComplete={(topics) => setTopics(topics)} />
-      )}
+      <TopicsForm
+        topicsSelected={topics}
+        onSubmitComplete={(topics) => setTopics(topics)}
+      />
+
+      {!!topics.length && <Feed />}
 
       {error && <div className={styles.error}>{error}</div>}
     </main>
