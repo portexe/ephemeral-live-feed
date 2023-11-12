@@ -24,6 +24,10 @@ I am using the `Faker` gem to produce random messages to broadcast to a random t
 
 The client connects to the server via Web Sockets (`ActionCable`) to subscribe to the appropriate topic channels and receive messages in real time.
 
+### Testing
+
+None yet. This app is mostly just for tinkering and experimenting. If I decide to add tests I will likely use `vitest` for the FE, and the built in framework provided by Rails for the BE.
+
 # Running the app
 
 1. Make sure to seed the database.

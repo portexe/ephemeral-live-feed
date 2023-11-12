@@ -29,8 +29,6 @@ export function App() {
     authenticatedFetch({
       method: "POST",
       url: "/api/log_out",
-    }).then(() => {
-      window.location.href = "/users/sign_in";
     });
   }
 
