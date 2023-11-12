@@ -1,6 +1,7 @@
 const genericErrorMessage = "Server error. Please try again soon.";
 const unauthorizedError = "Unauthorized. Redirecting to login.";
 const loginUrl = "/users/sign_in";
+const logOutUrl = "/api/log_out";
 
 export async function authenticatedFetch({
   url,
@@ -18,7 +19,7 @@ export async function authenticatedFetch({
         Accept: "application/json",
       },
     }).then(async (res) => {
-      if (res.status === 401 || res.status === 403) {
+      if (url === logOutUrl || res.status === 401 || res.status === 403) {
         window.location.href = loginUrl;
         throw Error(unauthorizedError);
       } else if (!res.ok) {

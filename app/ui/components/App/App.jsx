@@ -25,10 +25,21 @@ export function App() {
       });
   }, []);
 
+  function logOut() {
+    authenticatedFetch({
+      method: "POST",
+      url: "/api/log_out",
+    }).then(() => {
+      window.location.href = "/users/sign_in";
+    });
+  }
+
   if (!loaded) return <main>Loading...</main>;
 
   return (
     <main>
+      <button onClick={logOut}>Log out</button>
+
       {topics.length ? (
         <Feed />
       ) : (

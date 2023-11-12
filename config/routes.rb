@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   root "react#index"
 
+  post "api/log_out" => "api#log_out"
   post "api/select_topics" => "api#select_topics"
   get "api/get_user_topics" => "api#get_user_topics"
 end
