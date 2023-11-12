@@ -10,7 +10,7 @@ The backend is a Ruby on Rails app that serves up a React UI via `vite-rails`. T
 
 ### Frontend
 
-The frontend is a React app using Vite.
+The frontend is a React app using Vite. HMR enabled 😊
 
 ### Authentication
 
@@ -23,3 +23,9 @@ I am using the `Faker` gem to produce random messages to broadcast to a random t
 ### Real time messages
 
 The client connects to the server via Web Sockets (`ActionCable`) to subscribe to the appropriate topic channels and receive messages in real time.
+
+# Running the app
+
+1. Make sure to seed the database.
+2. Run `bundle install` and `npm install` to install all necessary dependencies.
+3. Run `npm run dev` to run both the frontend and backend together.
