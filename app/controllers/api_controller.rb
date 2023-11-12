@@ -23,4 +23,8 @@ class ApiController < ApplicationController
 
         render json: { success: true, topics: topics }, status: :ok
     end
+
+    def log_out
+        sign_out(current_user)
+    end
 end
